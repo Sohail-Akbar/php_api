@@ -13,6 +13,9 @@ include_once  './handlers/functions.php';
 
 // Set the header for JSON response
 header('Content-Type: application/json');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 
 // Get and sanitize the requested URI
 $requestUri = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
@@ -23,6 +26,8 @@ $endpoint = str_replace(API_PATH, '', $requestUri);
 // Define routes
 $routes = [
     '/' => __DIR__ . '/routes/welcome.php',
+    '/login' => __DIR__ . '/routes/auth.php',
+    '/register' => __DIR__ . '/routes/auth.php',
 ];
 
 // Switch case for routing
